@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE struts PUBLIC        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.action.extension" value="do,action"/>
+	<constant name="struts.configuration.xml.reload" value="true"/>
+	<constant name="struts.devMode" value="true"/>
+	<package name="default" namespace="/"
+		extends="struts-default,json-default">
+		<global-results>
+			<result name="error"/>
+			<result name="succeed">/common/succeed.jsp</result>
+		</global-results>
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+
+
+		<action name="tadmin_*" class="com.action.TadminAction"
+			method="{1}">
+			<result name="list">/admin/tadmin/tadmin_list.jsp</result>
+			<result name="toAdd">/admin/tadmin/tadmin_add.jsp</result>
+			<result name="toUpdate">/admin/tadmin/tadmin_update.jsp</result>
+			<result name="toView">/admin/tadmin/tadmin_view.jsp</result>
+			<result name="login">/admin/login.jsp</result>
+			<result name="toupwd">/admin/tadmin/tadmin_upwd.jsp</result>
+			<result name="success" type="redirectAction">tadmin_list</result>
+			<result name="exist" type="json">
+				<param name="root">exist</param>
+			</result>
+			<result name="flag" type="json">
+				<param name="root">flag</param>
+			</result>
+			
+		</action>
+
+		<action name="equipment_*" class="com.action.equipmentAction"
+				method="{1}">
+			<result name="list">/user/equipment/equipment_list.jsp</result>
+			<result name="toAdd">/user/equipment/equipment_add.jsp</result>
+			<result name="toUpdate">/user/equipment/equipment_update.jsp</result>
+			<result name="toView">/user/equipment/equipment_view.jsp</result>
+			<result name="login">/admin/login.jsp</result>
+			<result name="success" type="redirectAction">equipment_list</result>
+			<result name="exist" type="json">
+				<param name="root">exist</param>
+			</result>
+			<result name="flag" type="json">
+				<param name="root">flag</param>
+			</result>
+
+		</action>
+
+		<action name="scheduled_*" class="com.action.scheduledAction"
+				method="{1}">
+			<result name="list">/user/scheduled/scheduled_list.jsp</result>
+			<result name="toAdd">/user/scheduled/scheduled_add.jsp</result>
+			<result name="toUpdate">/user/scheduled/scheduled_update.jsp</result>
+			<result name="toView">/user/scheduled/scheduled_view.jsp</result>
+			<result name="login">/admin/login.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">scheduled_list</param>
+				<param name="xname">${xname}</param>
+				<param name="tname">${tname}</param>
+			</result>
+						<result name="exist" type="json">
+				<param name="root">exist</param>
+			</result>
+			<result name="flag" type="json">
+				<param name="root">flag</param>
+			</result>
+
+		</action>
+<!--action></action -->
+	</package>
+</struts> 
